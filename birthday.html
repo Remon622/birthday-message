@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at center, #f9a8d4, #fce7f3, #fff1f2);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    /* Particle Background */
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .particle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: rgba(251, 113, 133, 0.5);
+      border-radius: 50%;
+      animation: floatParticle 10s infinite ease-in-out;
+      opacity: 0;
+    }
+    @keyframes floatParticle {
+      0% { transform: translateY(100vh) scale(0); opacity: 0.8; }
+      50% { opacity: 0.3; }
+      100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+    }
+    /* Card Styling */
+    .card {
+      position: relative;
+      max-width: 700px;
+      padding: 2.5rem;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8));
+      border-radius: 1.5rem;
+      box-shadow: 0 20px 60px rgba(219, 39, 119, 0.3);
+      backdrop-filter: blur(10px);
+      transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
+      animation: cardEntrance 1.5s ease-out forwards;
+      z-index: 1;
+    }
+    @keyframes cardEntrance {
+      from { transform: perspective(1000px) rotateX(20deg) rotateY(20deg) translateY(100px); opacity: 0; }
+      to { transform: perspective(1000px) rotateX(0) rotateY(0) translateY(0); opacity: 1; }
+    }
+    /* Flower Animations */
+    .flower {
+      position: absolute;
+      font-size: 2.5rem;
+      animation: pulseFlower 4s ease-in-out infinite;
+    }
+    .flower-top-left { top: -3rem; left: -2rem; animation-delay: 0s; }
+    .flower-top-right { top: -3rem; right: -2rem; animation-delay: 0.5s; }
+    .flower-bottom { font-size: 3rem; animation-delay: 1s; }
+    @keyframes pulseFlower {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.2) rotate(10deg); }
+    }
+    /* Text Styling */
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      text-align: center;
+      background: linear-gradient(45deg, #e11d48, #fb7185);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 2px 10px rgba(225, 29, 72, 0.3);
+      animation: glow 2s ease-in-out infinite;
+    }
+    @keyframes glow {
+      0%, 100% { text-shadow: 0 2px 10px rgba(225, 29, 72, 0.3); }
+      50% { text-shadow: 0 4px 20px rgba(225, 29, 72, 0.6); }
+    }
+    p {
+      color: #4b5563;
+      line-height: 1.8;
+      text-align: center;
+    }
+    .highlight {
+      background: linear-gradient(90deg, #fb7185, #e11d48);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 600;
+    }
+    /* Heart Button */
+    .heart-btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: linear-gradient(45deg, #f43f5e, #e11d48);
+      color: white;
+      border-radius: 2rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .heart-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transition: left 0.5s ease;
+    }
+    .heart-btn:hover::before {
+      left: 100%;
+    }
+    .heart-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(225, 29, 72, 0.5);
+    }
+    /* Floating Petals */
+    .petal {
+      position: absolute;
+      font-size: 1.5rem;
+      animation: fallPetal 8s linear infinite;
+      z-index: -1;
+    }
+    @keyframes fallPetal {
+      0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Particle Background -->
+  <div class="particles" id="particles"></div>
+
+  <!-- Floating Petals -->
+  <div class="petal" style="left: 10%; animation-delay: 0s;">🌸</div>
+  <div class="petal" style="left: 30%; animation-delay: 2s;">🌷</div>
+  <div class="petal" style="left: 50%; animation-delay: 4s;">🌺</div>
+  <div class="petal" style="left: 70%; animation-delay: 6s;">🌹</div>
+  <div class="petal" style="left: 90%; animation-delay: 8s;">🌼</div>
+
+  <div class="card">
+    <!-- Flowers on Card -->
+    <div class="flower flower-top-left">🌸</div>
+    <div class="flower flower-top-right">🌷</div>
+
+    <h1>Happy Birthday</h1>
+
+    <p class="text-lg md:text-xl">
+      Maybe I'm not the man of your ideal type. Sometimes — or even often — I hurt you without knowing the real reason.  
+      But you know what, Taki? Ever since I met you, I've been trying to become a better person.  
+      You and I are just perfect for each other, so don't believe anything else.
+    </p>
+
+    <p class="text-xl md:text-2xl font-semibold mt-4">
+      Happy birthday to the most beautiful woman in the world.
+    </p>
+
+    <p class="text-base md:text-lg mt-2">
+      I hope every happiness in this world finds its way to you, and may Allah always bless you.
+    </p>
+
+    <!-- Bottom Flowers -->
+    <div class="text-center mt-6 flower flower-bottom">🌺🌼🌹</div>
+
+    <!-- Heart Button -->
+    <div class="text-center mt-4">
+      <span class="heart-btn">With All My Heart</span>
+    </div>
+  </div>
+
+  <script>
+    // Particle Generator
+    const particleContainer = document.getElementById('particles');
+    const particleCount = 50;
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      particle.style.left = ${Math.random() * 100}%;
+      particle.style.animationDelay = ${Math.random() * 10}s;
+      particleContainer.appendChild(particle);
+    }
+  </script>
+</body>
+</html>
